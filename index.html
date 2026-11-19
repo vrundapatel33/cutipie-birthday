@@ -1,0 +1,1109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>The Cutipie Files</title>
+
+<style>
+:root {
+  --paper: #f5e8cd;
+  --cream: #fff8e8;
+  --red: #9d372d;
+  --ink: #49382a;
+  --green: #657951;
+  --border: #c7ae89;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ddc5a0;
+  background-image: repeating-linear-gradient(
+    45deg, transparent, transparent 8px,
+    rgba(90,60,30,.025) 8px,
+    rgba(90,60,30,.025) 9px
+  );
+  color: var(--ink);
+  font-family: Georgia, serif;
+  padding: 18px;
+  padding-bottom: max(25px, env(safe-area-inset-bottom));
+}
+
+.container {
+  max-width: 560px;
+  margin: 25px auto;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 35px #60402030;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: monospace;
+  font-size: 11px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.red {
+  color: var(--red);
+}
+
+.center {
+  text-align: center;
+}
+
+.small {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+h1 {
+  color: var(--red);
+  font-size: clamp(28px, 7vw, 40px);
+  letter-spacing: 2px;
+  margin: 18px 0 8px;
+}
+
+h2 {
+  font-size: 25px;
+  margin-top: 12px;
+}
+
+p, li {
+  line-height: 1.7;
+}
+
+.stamp {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 3px solid var(--red);
+  color: var(--red);
+  font: bold 17px monospace;
+  letter-spacing: 2px;
+  transform: rotate(-8deg);
+  margin: 14px 0;
+}
+
+.cartoon {
+  width: 100%;
+  max-width: 340px;
+  display: block;
+  margin: 16px auto;
+}
+
+.paper {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  margin: 18px 0;
+}
+
+.dossier {
+  background: #ecdbb9;
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 14px;
+}
+
+.detail:last-child {
+  border-bottom: 0;
+}
+
+button {
+  width: 100%;
+  padding: 16px 12px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--red);
+  color: white;
+  font: bold 14px Georgia, serif;
+  letter-spacing: .6px;
+  cursor: pointer;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: default;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.quiet {
+  background: transparent;
+  color: #75634d;
+  font-size: 12px;
+  text-decoration: underline;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  animation: appear .45s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+textarea {
+  width: 100%;
+  min-height: 155px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: #fffdf6;
+  border-radius: 6px;
+  color: var(--ink);
+  font: 16px Georgia, serif;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: 2px solid var(--red);
+}
+
+.progress {
+  display: flex;
+  gap: 7px;
+  margin: 18px 0;
+}
+
+.progress span {
+  flex: 1;
+  background: #dec9a4;
+  padding: 9px 0;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.progress .done {
+  background: var(--green);
+  color: white;
+}
+
+.progress .current {
+  border: 2px solid var(--red);
+}
+
+.reaction {
+  background: #e5e5ce;
+  color: #536345;
+  padding: 15px;
+  margin: 15px 0;
+  border-left: 4px solid var(--green);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.case-closed {
+  border: 3px double var(--green);
+  color: var(--green);
+  padding: 12px;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.cake {
+  font-size: 85px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.certificate {
+  border: 5px double #a28756;
+  background: var(--cream);
+  padding: 20px 14px;
+  margin: 22px 0;
+  text-align: center;
+}
+
+.certificate h2 {
+  color: #806143;
+}
+
+.certificate .name {
+  color: var(--red);
+  font-size: 31px;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+.envelope {
+  width: 100%;
+  max-width: 320px;
+  margin: 25px auto;
+  display: block;
+}
+
+.letter {
+  background: #fffaed;
+  border: 1px solid var(--border);
+  padding: 24px;
+  margin-top: 22px;
+  line-height: 1.8;
+}
+
+.coupon {
+  border: 2px dashed #aa8653;
+  background: #efdbac;
+  text-align: center;
+  padding: 22px 15px;
+  margin: 25px 0;
+}
+
+.coupon h2 {
+  color: var(--red);
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 15px 0;
+}
+
+.consent input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: var(--green);
+}
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  z-index: 100;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(115vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+  margin-top: 25px;
+  text-align: center;
+  color: #80694d;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    margin: 8px auto;
+    padding: 18px;
+  }
+
+  .detail {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+<div class="header">
+  <span class="red">● CLASSIFIED DOCUMENT</span>
+  <span>CASE #20112026</span>
+</div>
+
+<!-- WELCOME SCREEN -->
+
+<section id="welcome" class="screen active">
+
+<div class="center">
+
+<svg class="cartoon" viewBox="0 0 320 190"
+     role="img" aria-label="Cartoon cat and mouse">
+
+  <rect x="14" y="18" width="130" height="150"
+        rx="4" fill="#d6bd92"
+        stroke="#967854"
+        transform="rotate(-9 79 93)"/>
+
+  <rect x="177" y="18" width="130" height="150"
+        rx="4" fill="#fff9e8"
+        stroke="#967854"
+        transform="rotate(9 242 93)"/>
+
+  <!-- Cartoon cat -->
+
+  <g transform="translate(26 30)">
+    <path d="M8 45 L8 2 L43 27 L67 27 L101 2 L101 45"
+          fill="#8799ab" stroke="#35464c" stroke-width="2"/>
+    <path d="M16 14 L34 31 L18 32Z M91 14 L76 32 L92 32Z"
+          fill="#e3a5a0"/>
+    <ellipse cx="55" cy="66" rx="49" ry="43"
+             fill="#8799ab" stroke="#35464c" stroke-width="2"/>
+    <ellipse cx="38" cy="54" rx="12" ry="19" fill="#fff2ce"/>
+    <ellipse cx="69" cy="54" rx="12" ry="19" fill="#fff2ce"/>
+    <ellipse cx="43" cy="55" rx="4" ry="10" fill="#293631"/>
+    <ellipse cx="64" cy="55" rx="4" ry="10" fill="#293631"/>
+    <ellipse cx="55" cy="85" rx="29" ry="20" fill="#f7e7c5"/>
+    <ellipse cx="55" cy="73" rx="8" ry="5" fill="#333"/>
+    <path d="M39 86 Q55 100 71 85 M28 73 L1 68 M28 80 L1 85 M81 73 L108 68 M81 80 L108 86"
+          fill="none" stroke="#35464c" stroke-width="2"/>
+  </g>
+
+  <!-- Cartoon mouse -->
+
+  <g transform="translate(194 47)">
+    <circle cx="16" cy="17" r="25"
+            fill="#aa7546" stroke="#704a2e" stroke-width="2"/>
+    <circle cx="74" cy="17" r="25"
+            fill="#aa7546" stroke="#704a2e" stroke-width="2"/>
+    <circle cx="16" cy="17" r="17" fill="#e8b099"/>
+    <circle cx="74" cy="17" r="17" fill="#e8b099"/>
+    <ellipse cx="45" cy="54" rx="44" ry="40"
+             fill="#ae794b" stroke="#704a2e" stroke-width="2"/>
+    <ellipse cx="32" cy="45" rx="10" ry="16" fill="#fff2d1"/>
+    <ellipse cx="58" cy="45" rx="10" ry="16" fill="#fff2d1"/>
+    <ellipse cx="36" cy="46" rx="4" ry="8" fill="#32241a"/>
+    <ellipse cx="54" cy="46" rx="4" ry="8" fill="#32241a"/>
+    <ellipse cx="45" cy="70" rx="28" ry="21" fill="#efc995"/>
+    <ellipse cx="45" cy="59" rx="7" ry="5" fill="#39291d"/>
+    <path d="M29 70 Q45 89 65 69"
+          fill="#fff7df" stroke="#704a2e" stroke-width="2"/>
+  </g>
+
+  <path d="M135 75 Q160 25 185 80"
+        stroke="#967854" stroke-width="2"
+        stroke-dasharray="5 6" fill="none"/>
+
+</svg>
+
+<div class="stamp">TOP SECRET</div>
+
+<p class="small red">
+DEPARTMENT OF UNNECESSARY INVESTIGATIONS
+</p>
+
+<h1>THE CUTIPIE FILES</h1>
+<p>The Birthday Investigation</p>
+
+</div>
+
+<div class="dossier">
+  <div class="detail">
+    <span>Subject</span>
+    <strong>Cutipie</strong>
+  </div>
+  <div class="detail">
+    <span>Case date</span>
+    <strong>20 November 2026</strong>
+  </div>
+  <div class="detail">
+    <span>Status</span>
+    <strong>Suspicious since birth</strong>
+  </div>
+  <div class="detail">
+    <span>Partner in crime</span>
+    <strong>His wife</strong>
+  </div>
+</div>
+
+<p>Dear Cutipie,</p>
+
+<p>
+Congratulations on successfully surviving another
+year without reading the instruction manual.
+</p>
+
+<p>
+During our routine investigation, five suspicious
+files were discovered. Unfortunately, taking
+another year to solve them is not an option.
+</p>
+
+<div class="paper">
+  <strong>Investigation Rules</strong>
+  <ul>
+    <li>Five confidential files.</li>
+    <li>No right or wrong answers.</li>
+    <li>Sarcasm is highly encouraged.</li>
+    <li>Using your brain is recommended.</li>
+    <li>Ridiculous answers are perfectly acceptable.</li>
+  </ul>
+</div>
+
+<p class="small">
+Your answers can be sent to the Birthday Department
+(aka your wife) if you choose to share them at the end.
+Only write what you're comfortable sharing.
+</p>
+
+<button onclick="startGame()">
+🔍 BEGIN INVESTIGATION
+</button>
+
+<p class="center small">
+Estimated investigation time: 5–10 minutes.
+</p>
+
+</section>
+
+<!-- INVESTIGATION SCREEN -->
+
+<section id="mission" class="screen">
+
+<div id="progressLabel" class="small red"></div>
+
+<div id="progress" class="progress"></div>
+
+<div id="reaction" class="reaction" hidden></div>
+
+<div class="paper">
+
+<div id="missionIcon" style="font-size:48px"></div>
+
+<div class="stamp" style="font-size:12px">
+TOP SECRET
+</div>
+
+<p id="fileNumber" class="small red"></p>
+
+<h2 id="questionTitle"></h2>
+
+<p id="questionText"></p>
+
+<label for="answer" class="small">
+Your investigation report:
+</label>
+
+<textarea id="answer"></textarea>
+
+<button id="nextButton" disabled
+        onclick="nextMission()">
+UNLOCK NEXT FILE 🔓
+</button>
+
+</div>
+
+<button class="secondary" onclick="previousMission()">
+← Return to previous file
+</button>
+
+<button class="quiet" onclick="finishGame()">
+End investigation and view birthday card
+</button>
+
+</section>
+
+<!-- BIRTHDAY FINALE -->
+
+<section id="finale" class="screen">
+
+<div class="case-closed">CASE CLOSED ✓</div>
+
+<div id="finalReaction" class="reaction" hidden></div>
+
+<div class="cake">🎂</div>
+
+<h1 class="center">Happy Birthday, Cutipie!</h1>
+
+<p class="center">
+Another year older. Same legendary humour.
+Software updates still pending.
+</p>
+
+<div class="certificate">
+
+<p class="small">
+DEPARTMENT OF QUESTIONABLE ACHIEVEMENTS
+</p>
+
+<div style="font-size:55px">🏆</div>
+
+<h2>Certificate of Survival</h2>
+
+<p>Proudly presented to</p>
+
+<div class="name">CUTIPIE</div>
+
+<p>Another successful year of questionable behaviour.</p>
+
+<div class="detail">
+  <span>Humour</span><strong>10/10</strong>
+</div>
+
+<div class="detail">
+  <span>Memory storage</span><strong>404 Not Found</strong>
+</div>
+
+<div class="detail">
+  <span>Reply speed</span><strong>Still loading...</strong>
+</div>
+
+<div class="detail">
+  <span>Listening skills</span><strong>Selective mode</strong>
+</div>
+
+<div class="detail">
+  <span>Patience with wife</span><strong>Under review</strong>
+</div>
+
+<div class="detail">
+  <span>Wife's patience</span><strong>Also under review</strong>
+</div>
+
+<div class="detail">
+  <span>Software updates</span><strong>Pending forever</strong>
+</div>
+
+<p class="small">
+<i>Certified by highly unqualified management.</i>
+</p>
+
+<p class="small">20 November 2026</p>
+
+</div>
+
+<!-- SEALED ENVELOPE -->
+
+<div id="sealedEnvelope" class="center">
+
+<svg class="envelope" viewBox="0 0 320 190"
+     role="img" aria-label="Envelope with red wax seal">
+
+  <rect x="15" y="20" width="290" height="155"
+        rx="5" fill="#d1b084"
+        stroke="#92714a" stroke-width="2"/>
+
+  <path d="M15 175 L160 72 L305 175"
+        fill="#dfc398" stroke="#92714a"/>
+
+  <path d="M15 20 L160 120 L305 20Z"
+        fill="#ecd3ab" stroke="#92714a"/>
+
+  <circle cx="160" cy="117" r="27"
+          fill="#9d372d" stroke="#752a20" stroke-width="2"/>
+
+  <circle cx="160" cy="117" r="20"
+          fill="none" stroke="#ce7965"/>
+
+  <text x="160" y="125" fill="#f5e8cd"
+        text-anchor="middle" font-size="24">♥</text>
+
+  <text x="160" y="159" fill="#806143"
+        text-anchor="middle" font-size="10"
+        letter-spacing="3">FOR CUTIPIE ONLY</text>
+
+</svg>
+
+<h2>One last confidential envelope.</h2>
+
+<p>
+Relax. No more questions.
+Your brain can officially retire for today.
+</p>
+
+<button onclick="openEnvelope()">
+💌 BREAK THE SEAL
+</button>
+
+</div>
+
+<!-- BIRTHDAY LETTER -->
+
+<div id="birthdayLetter" hidden>
+
+<div class="letter">
+
+<p class="center small red">A PRIVATE NOTE</p>
+
+<h2 class="center red">Happy Birthday, Cutipie! ❤️</h2>
+
+<!-- EDIT YOUR BIRTHDAY MESSAGE HERE -->
+
+<p>
+I hope you enjoyed this little surprise.
+For once, I didn't have to remind you
+ten times to answer something. 😂
+</p>
+
+<p>
+I wish I could be there today to celebrate
+with you, eat your cake and annoy you in person.
+</p>
+
+<p>
+Jokes apart, I'm really glad I have you in my life.
+I hope this year brings you happiness, success,
+good health and everything you've been working towards.
+</p>
+
+<p>
+Love you, miss you, and enjoy your birthday!
+</p>
+
+<!-- END BIRTHDAY MESSAGE -->
+
+</div>
+
+<!-- BONUS COUPON -->
+
+<div class="coupon">
+
+<p class="small">OFFICIAL BIRTHDAY VOUCHER</p>
+
+<div style="font-size:55px">🎟️</div>
+
+<h2>ONE COMPLAINT-FREE DAY</h2>
+
+<hr style="border:0;border-top:1px dashed #aa8653">
+
+<p>Valid for 24 hours only.</p>
+
+<p class="small">
+Non-transferable. No extensions.
+Management reserves the right to cancel
+this offer. 😂
+</p>
+
+</div>
+
+<div class="center">
+  <div style="font-size:40px">🐱 🐭</div>
+  <h2>THE END</h2>
+  <p>The investigation is closed. The circus continues.</p>
+</div>
+
+<!-- OPTIONAL RESPONSE SUBMISSION -->
+
+<div class="paper" id="sharingPanel">
+
+<h3>Submit Investigation Report</h3>
+
+<p class="small">
+You can send your answers directly to the
+Birthday Department. Sending is optional and
+does not affect your birthday surprise.
+</p>
+
+<label class="consent">
+<input type="checkbox" id="consent">
+<span>
+I agree to share my investigation answers
+with the person who created this birthday game.
+</span>
+</label>
+
+<button id="submitButton" disabled onclick="submitAnswers()">
+SEND INVESTIGATION REPORT
+</button>
+
+<p id="submitStatus" role="status" class="small"></p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+THE CUTIPIE FILES • EST. 2026<br>
+Department of Unnecessary Investigations
+</footer>
+
+</main>
+
+<script>
+
+// YOUR GOOGLE APPS SCRIPT BACKEND
+
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbwH1oQ6P_dd8TOThEOhpZcKigsuqLYz69XParFdI3vx8XnecMCjVuGJqmnc8Srdbppz/exec";
+
+// FIVE CONFIDENTIAL FILES
+
+const missions = [
+  {
+    icon: "🎬",
+    title: "The Parallel Universe",
+    question:
+      "If we were contestants on a reality TV show, what would we be famous for?",
+    placeholder:
+      "Your questionable answer goes here...",
+    reaction:
+      "The producers are reviewing your application. Expectations are low."
+  },
+  {
+    icon: "⚙️",
+    title: "The Software Update",
+    question:
+      "A new software update is available for your wife. You can modify ONE feature, remove ONE bug or add ONE new function. What are you changing?",
+    placeholder:
+      "Submit your brilliant update request...",
+    reaction:
+      "Update requested. Approval from management is pending."
+  },
+  {
+    icon: "🛸",
+    title: "The Time Machine",
+    question:
+      "You've accidentally travelled to 2031. It's Sunday morning. You have no work and no responsibilities. Where are you, who's around you, and how are you spending your day?",
+    placeholder:
+      "Describe your future Sunday...",
+    reaction:
+      "Future prediction recorded. Thankfully, the time machine survived."
+  },
+  {
+    icon: "🧞",
+    title: "The Budget Genie",
+    question:
+      "A genie appears on your birthday. Unfortunately, he's on a budget. He can grant only three wishes: one for yourself, one for someone you care about and one absolutely ridiculous wish. What are your wishes?",
+    placeholder:
+      "Dear financially struggling genie...",
+    reaction:
+      "The genie is reconsidering his career choices."
+  },
+  {
+    icon: "🍿",
+    title: "The Netflix Original",
+    question:
+      "Netflix is making a comedy series about your life. What would you name it? What would be the funniest recurring scene? What would you change next season? What would you never want to change?",
+    placeholder:
+      "Your award-winning script goes here...",
+    reaction:
+      "Script received. Netflix is reconsidering its investment."
+  }
+];
+
+let currentMission = 0;
+let answers = ["", "", "", "", ""];
+let submitted = false;
+let submitting = false;
+
+const $ = id => document.getElementById(id);
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  $(id).classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function startGame() {
+  currentMission = 0;
+  showScreen("mission");
+  renderMission();
+}
+
+function renderMission() {
+
+  const m = missions[currentMission];
+
+  $("missionIcon").textContent = m.icon;
+
+  $("fileNumber").textContent =
+    "CONFIDENTIAL FILE 0" + (currentMission + 1);
+
+  $("questionTitle").textContent = m.title;
+  $("questionText").textContent = m.question;
+
+  $("answer").placeholder = m.placeholder;
+  $("answer").value = answers[currentMission];
+  $("answer").maxLength = 5000;
+
+  $("progressLabel").textContent =
+    "FILE " + (currentMission + 1) + " OF 5";
+
+  $("progress").replaceChildren();
+
+  missions.forEach((item, index) => {
+
+    const span = document.createElement("span");
+
+    if (index < currentMission) {
+      span.className = "done";
+      span.textContent = "✓";
+    } else if (index === currentMission) {
+      span.className = "current";
+      span.textContent = "🔍";
+    } else {
+      span.textContent = "🔒";
+    }
+
+    $("progress").appendChild(span);
+  });
+
+  $("reaction").hidden = currentMission === 0;
+
+  if (currentMission > 0) {
+    $("reaction").textContent =
+      "✓ EVIDENCE RECEIVED: " +
+      missions[currentMission - 1].reaction;
+  }
+
+  $("nextButton").textContent =
+    currentMission === 4
+      ? "CLOSE THE INVESTIGATION 🗂️"
+      : "UNLOCK NEXT FILE 🔓";
+
+  updateNextButton();
+}
+
+function updateNextButton() {
+  $("nextButton").disabled =
+    !$("answer").value.trim();
+}
+
+$("answer").addEventListener("input", () => {
+  answers[currentMission] = $("answer").value;
+  updateNextButton();
+});
+
+function nextMission() {
+
+  const answer = $("answer").value.trim();
+
+  if (!answer) return;
+
+  answers[currentMission] = answer;
+
+  if (currentMission < 4) {
+    currentMission++;
+    renderMission();
+    window.scrollTo({top: 0, behavior: "smooth"});
+  } else {
+    finishGame();
+  }
+}
+
+function previousMission() {
+
+  answers[currentMission] = $("answer").value;
+
+  if (currentMission === 0) {
+    showScreen("welcome");
+  } else {
+    currentMission--;
+    renderMission();
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+}
+
+function finishGame() {
+
+  const complete = answers.every(a => a.trim());
+
+  $("finalReaction").hidden = !complete;
+
+  if (complete) {
+    $("finalReaction").textContent =
+      missions[4].reaction;
+  }
+
+  $("sharingPanel").hidden =
+    !answers.some(a => a.trim());
+
+  showScreen("finale");
+  launchConfetti();
+}
+
+function openEnvelope() {
+
+  $("sealedEnvelope").hidden = true;
+  $("birthdayLetter").hidden = false;
+
+  launchConfetti();
+
+  $("birthdayLetter").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// CONFETTI ANIMATION
+
+function launchConfetti() {
+
+  if (window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches) return;
+
+  const colors = [
+    "#9d372d",
+    "#d6af53",
+    "#79866a",
+    "#8297a7",
+    "#e3a5a0",
+    "#c7ae89"
+  ];
+
+  for (let i = 0; i < 75; i++) {
+
+    const piece = document.createElement("div");
+
+    piece.className = "confetti";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.width = Math.random() * 7 + 5 + "px";
+    piece.style.height = Math.random() * 9 + 5 + "px";
+
+    piece.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    piece.style.animationDuration =
+      Math.random() * 2 + 2 + "s";
+
+    piece.style.animationDelay =
+      Math.random() * 0.7 + "s";
+
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), 6000);
+  }
+}
+
+// GOOGLE SHEETS RESPONSE SUBMISSION
+
+$("consent").addEventListener("change", () => {
+  $("submitButton").disabled =
+    !$("consent").checked || submitted || submitting;
+});
+
+async function submitAnswers() {
+
+  if (!$("consent").checked || submitted || submitting) {
+    return;
+  }
+
+  submitting = true;
+
+  $("submitButton").disabled = true;
+  $("submitButton").textContent = "SENDING REPORT...";
+
+  $("submitStatus").textContent =
+    "Submitting your investigation report...";
+
+  try {
+
+    const response = await fetch(WEB_APP_URL, {
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        consent: true,
+        answers: answers.map(a => a.trim())
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
+
+    const result = await response.json();
+
+    if (result.status !== "success") {
+      throw new Error("Submission not confirmed");
+    }
+
+    submitted = true;
+
+    $("submitStatus").textContent =
+      "✓ Investigation report successfully delivered!";
+
+    $("submitStatus").style.color = "#657951";
+
+    $("submitButton").textContent = "REPORT SENT ✓";
+    $("consent").disabled = true;
+
+  } catch (error) {
+
+    $("submitStatus").textContent =
+      "Delivery could not be confirmed. The report may already have arrived. Your birthday surprise is still available.";
+
+    $("submitButton"  ).textContent =
+      "DELIVERY UNCONFIRMED";
+
+    $("submitStatus").style.color = "#9d372d";
+
+    // Avoid duplicate submissions after an
+    // uncertain network response.
+    $("consent").disabled = true;
+    submitted = true;
+
+  } finally {
+
+    submitting = false;
+
+    $("submitButton").disabled =
+      submitted || !$("consent").checked;
+  }
+}
+
+</script>
+
+</body>
+</html>
